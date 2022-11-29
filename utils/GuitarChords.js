@@ -101,9 +101,9 @@ function getFrequency(string, fret) {
   return A * Math.pow(2, (fret + offsets[string]) / 12);
 }
 
-function mute() {
-  dampening = 0.89;
-}
+// function mute() {
+//   dampening = 0.89;
+// }
 
 export default function playChord(frets) {
   context.resume().then(strum(frets));

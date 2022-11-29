@@ -1,4 +1,4 @@
-import key from './key';
+import { key, chordKey } from './key';
 
 function arraysEqual(a, b) {// Checks 2 arrays for equality
     if (a === b) return true;
@@ -43,4 +43,13 @@ function generateNote(difficulty) { // Needs to return [null,5,null,null,null,nu
   return noteChord
 }
 
-export {arraysEqual, generateNote}
+function generateChord() {
+  let tempArr = Object.keys(chordKey)
+  let random = Math.trunc(Math.random() * tempArr.length)
+
+  console.log("Chord: ", chordKey[tempArr[random]])
+
+  return chordKey[tempArr[random]]
+}
+
+export {arraysEqual, generateNote, generateChord}

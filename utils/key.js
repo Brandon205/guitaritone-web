@@ -103,4 +103,15 @@ const key = {
     ]
 }
 
-export default key
+const chordKey = {
+    "A": [null,0,2,2,2,0],
+    "Amin": [null,0,2,2,1,0],
+    "C": [null,3,2,0,1,0],
+    "D": [null,null,0,2,3,2],
+    "Dmin": [null,0,0,2,3,1],
+    "E": [0,2,2,1,0,0],
+    "Emin": [0,2,2,0,0,0],
+    "G": [3,2,0,0,0,1]
+}
+
+export {key, chordKey}

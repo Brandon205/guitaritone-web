@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import playChord from '../utils/GuitarChords';
-import key from '../utils/key.js';
+import { key } from '../utils/key.js';
 import { arraysEqual, generateNote } from '../utils/utilFunctions';
 
 export default function PitchDetection() {
@@ -10,11 +10,11 @@ export default function PitchDetection() {
     
     const firstUpdate = useRef(0)
     useEffect(() => {
-        if (firstUpdate.current < 1) {
-            firstUpdate.current = firstUpdate.current + 1
-            return;
-        }
         setCurrentChord(generateNote(difficulty))
+        // if (firstUpdate.current < 1) {
+        //     firstUpdate.current = firstUpdate.current + 1
+        //     return;
+        // }
     }, [difficulty])
 
     useEffect(() => {
@@ -92,7 +92,7 @@ export default function PitchDetection() {
     return (
         <div className='flex justify-center items-center flex-col gap-16'>
             <h1 className='text-white text-3xl'>Pitch Detection Test</h1>
-            <button onClick={() => playChord(currentChord)} className='p-2 bg-neutral-500 rounded-md text-xl text-white w-16'>Play Note</button>
+            <button onClick={() => playChord(currentChord)} className='p-2 bg-neutral-500 rounded-md text-xl text-white w-32'>Play Note</button>
             <h3 className='text-white text-3xl'>Score: {score}</h3>
 
             {content}
