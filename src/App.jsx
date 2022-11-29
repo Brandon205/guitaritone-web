@@ -1,5 +1,5 @@
 import React from 'react';
-import PitchDetection from '../components/PitchDetection';
+import PitchDetection from '../components/PitchDetection.jsx';
 
 export default function App() {
 
