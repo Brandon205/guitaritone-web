@@ -28,14 +28,14 @@ function generateNote(difficulty) { // Needs to return [null,5,null,null,null,nu
     length = 12
   }
   
-  let keyCenterIndex = Math.trunc(Math.random() * length  - 1) // Used to index the tempArr and get a random key to go off of
-  console.log("keyCenterIndex: ", keyCenterIndex)
+  let keyCenterIndex = Math.trunc(Math.random() * length) // Used to index the tempArr and get a random key to go off of
+  // console.log("keyCenterIndex: ", keyCenterIndex)
 
   let tempval = tempArr[keyCenterIndex]
   console.log("key note: ", tempval)
 
-  let noteChordIndex = Math.trunc(Math.random() * key[tempval].length - 1)
-  console.log("noteChordIndex: ", noteChordIndex)
+  let noteChordIndex = Math.trunc(Math.random() * key[tempval].length)
+  // console.log("noteChordIndex: ", noteChordIndex)
 
   let noteChord = key[tempval][noteChordIndex]
     
