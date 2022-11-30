@@ -4,6 +4,7 @@ import { arraysEqual, generateChord } from '../utils/utilFunctions';
 
 export default function GuitarChord() {
     const [currentChord, setCurrentChord] = useState([null,null,null,null,null,null]);
+    const [streak, setStreak] = useState(0);
     const [score, setScore] = useState(0);
 
     useEffect(() => {
@@ -12,12 +13,11 @@ export default function GuitarChord() {
 
     let takeGuess = (chordArr) => { // G: [3,2,0,0,3,3]
         if (arraysEqual(chordArr, currentChord)) {
-            // correct
             setScore(score + 1)
+            setStreak(streak + 1)
             setCurrentChord(generateChord())
         } else {
-            // incorrect
-            console.log('incorrect')
+            setStreak(0)
         }
     }
 
@@ -29,6 +29,7 @@ export default function GuitarChord() {
 
             <button onClick={() => playChord(currentChord)} className='p-2 bg-neutral-500 rounded-md text-xl text-white w-32'>Play Chord</button>
             <h3 className='text-white text-3xl'>Score: {score}</h3>
+            <h3 className='text-white text-3xl'>Streak: {streak}</h3>
 
             <div className="flex flex-wrap justify-center gap-2">
                 <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20' onClick={() => takeGuess([null,0,2,2,2,0])}>A</button>

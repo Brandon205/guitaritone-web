@@ -14,12 +14,10 @@ export default function StringNote() {
 
     let takeGuess = (fret) => {
         if (fret === stringNoteKey[stringNote[0]][stringNote[1]]) {
-            console.log('wowzers')
             setScore(score + 1)
             setStreak(streak + 1)
             setStringNote(generateStringNote(difficulty));
         } else {
-            console.log('incorrect')
             setStreak(0)
         }
     }

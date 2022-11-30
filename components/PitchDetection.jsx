@@ -6,6 +6,7 @@ import { arraysEqual, generateNote } from '../utils/utilFunctions';
 export default function PitchDetection() {
     const [currentChord, setCurrentChord] = useState([null,null,null,null,null,null])
     const [score, setScore] = useState(0);
+    const [streak, setStreak] = useState(0);
     const [difficulty, setDifficulty] = useState('easy');
 
     useEffect(() => {
@@ -15,12 +16,12 @@ export default function PitchDetection() {
     let takeGuess = (note) => {
         for (let i = 0; i < key[note].length; i++) {
             if (arraysEqual(currentChord, key[note][i])) {
-                console.log('Wowzers you did it!')
                 setScore(score + 1)
+                setStreak(streak + 1)
                 setCurrentChord(generateNote(difficulty))
                 break;
             } else {
-                console.log('Nope ', note, currentChord)
+                setStreak(0)
             }
         }
         return;
@@ -81,6 +82,7 @@ export default function PitchDetection() {
             <h1 className='text-white text-3xl'>Pitch Detection Test</h1>
             <button onClick={() => playChord(currentChord)} className='p-2 bg-neutral-500 rounded-md text-xl text-white w-32'>Play Note</button>
             <h3 className='text-white text-3xl'>Score: {score}</h3>
+            <h3 className='text-white text-3xl'>Streak: {streak}</h3>
 
             {content}
 
