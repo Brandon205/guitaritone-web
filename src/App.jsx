@@ -18,13 +18,11 @@ export default function App() {
 
         <nav className="absolute sticky bottom-0 flex justify-around w-screen bg-neutral-900">
           <Link to='/' className="flex-grow hover:bg-neutral-700 flex flex-col items-center p-3">
-            {/* <Link to='/' className='text-white hover:text-neutral-400 text-2xl'><BsMusicNote /></Link> */}
-            <BsMusicNote className='text-white hover:text-neutral-400 text-2xl' />
+            <BsMusicNote className='text-white text-2xl' />
             <p className='text-white'>Pitch</p>
           </Link>
           <Link to='/chord' className="flex-grow hover:bg-neutral-700 flex flex-col items-center p-3">
-            {/* <Link to='/chord' className='text-white hover:text-neutral-400 text-2xl'><BsMusicNoteBeamed /></Link> */}
-            <BsMusicNoteBeamed className='text-white hover:text-neutral-400 text-2xl' />
+            <BsMusicNoteBeamed className='text-white text-2xl' />
             <p className='text-white'>Chord</p>
           </Link>
         </nav>
