@@ -11,10 +11,6 @@ export default function PitchDetection() {
     const firstUpdate = useRef(0)
     useEffect(() => {
         setCurrentChord(generateNote(difficulty))
-        // if (firstUpdate.current < 1) {
-        //     firstUpdate.current = firstUpdate.current + 1
-        //     return;
-        // }
     }, [difficulty])
 
     useEffect(() => {
@@ -102,8 +98,15 @@ export default function PitchDetection() {
                 <option value='easy'>Easy (G, A, C)</option>
                 <option value='medium'>Medium (G, A, B, C, D)</option>
                 <option value='hard'>Hard (G-Scale: G, A, B, C, D, E, F#)</option>
-                <option value='challenging'>Difficult (All Notes)</option>
+                <option value='challenging'>Difficult (Chromatic Scale)</option>
             </select>
+
+            <h1 className='text-white text-4xl'>How to use:</h1>
+            <ul className='p-2 text-white'>
+                <li className='mb-3'>1. Hit the "Play Note" button to hear a note.</li>
+                <li className='mb-3'>2. From there try your best, either by humming the note and trying to play it on your guitar.</li>
+                <li className='mb-3'>3. Once you think you have it go ahead and take a guess.</li>
+            </ul>
 
         </div>
     )
