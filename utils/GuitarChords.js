@@ -106,5 +106,6 @@ function getFrequency(string, fret) {
 // }
 
 export default function playChord(frets) {
+  console.log('FRETS: ', frets)
   context.resume().then(strum(frets));
 }

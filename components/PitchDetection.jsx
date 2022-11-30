@@ -4,7 +4,7 @@ import { key } from '../utils/key.js';
 import { arraysEqual, generateNote } from '../utils/utilFunctions';
 
 export default function PitchDetection() {
-    const [currentChord, setCurrentChord] = useState([null,null,null,null,null,null,])
+    const [currentChord, setCurrentChord] = useState([null,null,null,null,null,null])
     const [score, setScore] = useState(0);
     const [difficulty, setDifficulty] = useState('easy');
     

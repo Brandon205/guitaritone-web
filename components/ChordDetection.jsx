@@ -3,7 +3,7 @@ import playChord from '../utils/GuitarChords';
 import { arraysEqual, generateChord } from '../utils/utilFunctions';
 
 export default function GuitarChord() {
-    const [currentChord, setCurrentChord] = useState([null,null,null,null,null,null,]);
+    const [currentChord, setCurrentChord] = useState([null,null,null,null,null,null]);
     const [score, setScore] = useState(0);
 
     const firstUpdate = useRef(0)
