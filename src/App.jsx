@@ -3,9 +3,11 @@ import { HashRouter as Router, Routes, Route, Link} from 'react-router-dom';
 import PitchDetection from '../components/PitchDetection.jsx';
 import ChordDetection from '../components/ChordDetection.jsx';
 import Intervals from '../components/Intervals.jsx';
+import StringNote from '../components/StringNote.jsx';
 
 import { BsMusicNoteBeamed, BsMusicNote } from "react-icons/bs";
 import { RiPinDistanceFill } from "react-icons/ri";
+import { FaGuitar } from "react-icons/fa";
 
 export default function App() {
 
@@ -16,6 +18,7 @@ export default function App() {
         <Routes>
           <Route path='/chord' element={<ChordDetection />} />
           <Route path='/intervals' element={<Intervals />} />
+          <Route path='/frets' element={<StringNote />} />
           <Route path='/' element={<PitchDetection />} />
         </Routes>
 
@@ -31,6 +34,10 @@ export default function App() {
           <Link to='/intervals' className="flex-grow hover:bg-neutral-700 flex flex-col items-center p-3">
             <RiPinDistanceFill className='text-white text-2xl' />
             <p className='text-white'>Interval</p>
+          </Link>
+          <Link to='/frets' className="flex-grow hover:bg-neutral-700 flex flex-col items-center p-3">
+            <FaGuitar className='text-white text-2xl' />
+            <p className='text-white'>Fretboard</p>
           </Link>
         </nav>
       </div>

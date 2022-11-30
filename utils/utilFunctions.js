@@ -1,4 +1,4 @@
-import { key, chordKey } from './key';
+import { key, chordKey, stringNoteKey } from './key';
 
 function arraysEqual(a, b) {// Checks 2 arrays for equality
     if (a === b) return true;
@@ -88,4 +88,24 @@ function generateInterval() {
   return [arr1, arr2, interval]
 }
 
-export {arraysEqual, generateNote, generateChord, generateInterval}
+function generateStringNote(difficulty) {
+  let stringOptions = ['E (6th)', 'A (5th)', 'D (4th)', 'G (3rd)', 'B (2nd)', 'e (1st)', ]
+  let randomString = Math.floor(Math.random() * 5)
+  randomString = stringOptions[randomString]
+  let random2 = Object.keys(stringNoteKey)[Math.floor(Math.random() * 5)]
+
+  let tempArr = [randomString];
+  if (difficulty === 'beginner') {
+    let randomNoteArr = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
+    let randomNoteIndex = Math.floor(Math.random() * randomNoteArr.length)
+
+    tempArr.push(randomNoteArr[randomNoteIndex])
+  } else if (difficulty === 'intermediate') {
+    let randomNote = Object.keys(stringNoteKey['E (6th)'])[Math.floor(Math.random() * 12)]
+    tempArr.push(randomNote)
+  }
+
+  return tempArr
+}
+
+export {arraysEqual, generateNote, generateChord, generateInterval, generateStringNote}
