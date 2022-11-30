@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import playChord from '../utils/GuitarChords';
 import { arraysEqual, generateChord } from '../utils/utilFunctions';
 
@@ -6,18 +6,9 @@ export default function GuitarChord() {
     const [currentChord, setCurrentChord] = useState([null,null,null,null,null,null]);
     const [score, setScore] = useState(0);
 
-    const firstUpdate = useRef(0)
     useEffect(() => {
         setCurrentChord(generateChord())
     }, [])
-
-    useEffect(() => {
-        if (firstUpdate.current < 1) {
-            firstUpdate.current = firstUpdate.current + 1
-            return;
-        }
-        playChord(currentChord)
-    }, [currentChord])
 
     let takeGuess = (chordArr) => { // G: [3,2,0,0,3,3]
         if (arraysEqual(chordArr, currentChord)) {

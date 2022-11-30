@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import playChord from '../utils/GuitarChords';
 import { key } from '../utils/key.js';
 import { arraysEqual, generateNote } from '../utils/utilFunctions';
@@ -7,19 +7,10 @@ export default function PitchDetection() {
     const [currentChord, setCurrentChord] = useState([null,null,null,null,null,null])
     const [score, setScore] = useState(0);
     const [difficulty, setDifficulty] = useState('easy');
-    
-    const firstUpdate = useRef(0)
-    useEffect(() => {
-        setCurrentChord(generateNote(difficulty))
-    }, [difficulty])
 
     useEffect(() => {
-        if (firstUpdate.current < 1) {
-            firstUpdate.current = firstUpdate.current + 1
-            return;
-        }
-        playChord(currentChord)
-    }, [currentChord])
+        setCurrentChord(generateNote(difficulty))
+    }, [])
 
     let takeGuess = (note) => {
         for (let i = 0; i < key[note].length; i++) {
