@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Link} from 'react-router-dom';
 import PitchDetection from '../components/PitchDetection.jsx';
 import ChordDetection from '../components/ChordDetection.jsx';
 
