@@ -1,35 +1,57 @@
 import React, { useState, useEffect } from 'react'
 import playChord from '../utils/GuitarChords';
 import { arraysEqual, generateChord } from '../utils/utilFunctions';
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function GuitarChord() {
     const [currentChord, setCurrentChord] = useState([null,null,null,null,null,null]);
     const [streak, setStreak] = useState(0);
     const [score, setScore] = useState(0);
+    const [animation, setAnimation] = useState(false);
 
     useEffect(() => {
         setCurrentChord(generateChord())
     }, [])
+
+    useEffect(() => {
+        if (animation) {
+            setTimeout(() => setAnimation(false), 1000)
+        }
+    }, [animation])
 
     let takeGuess = (chordArr) => { // G: [3,2,0,0,3,3]
         if (arraysEqual(chordArr, currentChord)) {
             setScore(score + 1)
             setStreak(streak + 1)
             setCurrentChord(generateChord())
+            setAnimation(true)
         } else {
             setStreak(0)
         }
     }
 
-    
+    const variants = {
+        open: { opacity: 1, y: 0 },
+        closed: { opacity: 0, y: "-25%" },
+    };
 
     return (
         <div className='flex justify-center items-center flex-col gap-16'>
             <h1 className='text-white text-3xl'>Open Chord Test</h1>
 
             <button onClick={() => playChord(currentChord)} className='p-2 bg-neutral-500 rounded-md text-xl text-white w-32 hover:bg-neutral-600'>Play Chord</button>
-            <h3 className='text-white text-3xl'>Score: {score}</h3>
-            <h3 className='text-white text-3xl'>Streak: {streak}</h3>
+            <div>
+                <h3 className='text-white text-3xl inline'>Score: {score} </h3>
+                <AnimatePresence initial={false}>
+                    <motion.p className='text-green-400 inline mb-10 absolute' variants={variants} initial={{ opacity: 0 }} animate={animation ? "open" : "closed"} exit={{ opacity: 0 }}>+1</motion.p>
+                </AnimatePresence>
+            </div>
+            <div>
+                <h3 className='text-white text-3xl inline'>Streak: {streak}</h3>
+                <AnimatePresence initial={false}>
+                    <motion.p className='text-green-400 inline mb-10 absolute' variants={variants} initial={{ opacity: 0 }} animate={animation ? "open" : "closed"} exit={{ opacity: 0 }}>+1</motion.p>
+                </AnimatePresence>
+            </div>
 
             <div className="flex flex-wrap justify-center gap-2">
                 <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess([null,0,2,2,2,0])}>A</button>

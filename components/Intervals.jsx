@@ -1,21 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import playChord from '../utils/GuitarChords';
 import { generateInterval } from '../utils/utilFunctions';
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Intervals() {
     const [currentInterval, setCurrentInterval] = useState([[null,null,null,null,null,null], [null,null,null,null,null,null], 'maj3'])
     const [streak, setStreak] = useState(0);
     const [score, setScore] = useState(0);
+    const [animation, setAnimation] = useState(false);
 
     useEffect(() => {
         setCurrentInterval(generateInterval())
     }, [])
+
+    useEffect(() => {
+        if (animation) {
+            setTimeout(() => setAnimation(false), 1000)
+        }
+    }, [animation])
 
     let takeGuess = (interval) => {
         if (interval === currentInterval[2]) {
             setScore(score + 1)
             setStreak(streak + 1)
             setCurrentInterval(generateInterval())
+            setAnimation(true)
         } else {
             setStreak(0)
         }
@@ -26,12 +35,27 @@ export default function Intervals() {
         setTimeout(() => playChord(currentInterval[1]), 650)
     }
 
+    const variants = {
+        open: { opacity: 1, y: 0 },
+        closed: { opacity: 0, y: "-25%" },
+    };
+
     return (
         <div className='flex justify-center items-center flex-col gap-16'>
             <h1 className='text-white text-3xl'>Interval Training</h1>
             <button onClick={() => handlePlay()} className='p-2 bg-neutral-500 rounded-md text-xl text-white w-32 hover:bg-neutral-600'>Play Interval</button>
-            <h3 className='text-white text-3xl'>Score: {score}</h3>
-            <h3 className='text-white text-3xl'>Streak: {streak}</h3>
+            <div>
+                <h3 className='text-white text-3xl inline'>Score: {score} </h3>
+                <AnimatePresence initial={false}>
+                    <motion.p className='text-green-400 inline mb-10 absolute' variants={variants} initial={{ opacity: 0 }} animate={animation ? "open" : "closed"} exit={{ opacity: 0 }}>+1</motion.p>
+                </AnimatePresence>
+            </div>
+            <div>
+                <h3 className='text-white text-3xl inline'>Streak: {streak}</h3>
+                <AnimatePresence initial={false}>
+                    <motion.p className='text-green-400 inline mb-10 absolute' variants={variants} initial={{ opacity: 0 }} animate={animation ? "open" : "closed"} exit={{ opacity: 0 }}>+1</motion.p>
+                </AnimatePresence>
+            </div>
 
             <div className="flex flex-wrap justify-center gap-2">
                 <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('maj3')}>Major 3rd</button>

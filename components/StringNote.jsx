@@ -1,26 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import { stringNoteKey } from '../utils/key.js';
 import { generateStringNote } from '../utils/utilFunctions';
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function StringNote() {
     const [score, setScore] = useState(0);
     const [streak, setStreak] = useState(0);
     const [stringNote, setStringNote] = useState(['E (6th)', 'A']);
     const [difficulty, setDifficulty] = useState('beginner');
+    const [animation, setAnimation] = useState(false);
 
     useEffect(() => {
         setStringNote(generateStringNote(difficulty))
     }, [difficulty])
 
+    useEffect(() => {
+        if (animation) {
+            setTimeout(() => setAnimation(false), 1000)
+        }
+    }, [animation])
+
     let takeGuess = (fret) => {
         if (fret === stringNoteKey[stringNote[0]][stringNote[1]]) {
             setScore(score + 1)
             setStreak(streak + 1)
-            setStringNote(generateStringNote(difficulty));
+            setStringNote(generateStringNote(difficulty))
+            setAnimation(true)
         } else {
             setStreak(0)
         }
     }
+
+    const variants = {
+        open: { opacity: 1, y: 0 },
+        closed: { opacity: 0, y: "-25%" },
+    };
 
     return (
         <div className='flex justify-center items-center flex-col gap-16'>
@@ -30,8 +44,18 @@ export default function StringNote() {
                 <h2 className='text-white text-3xl'>Note: <span>{stringNote[1]}</span></h2>
             </div>
             <div>
-                <h3 className='text-white text-3xl'>Score: {score}</h3>
-                <h3 className='text-white text-3xl'>Streak: {streak}</h3>
+                <div>
+                    <h3 className='text-white text-3xl inline'>Score: {score} </h3>
+                    <AnimatePresence initial={false}>
+                        <motion.p className='text-green-400 inline mb-10 absolute' variants={variants} initial={{ opacity: 0 }} animate={animation ? "open" : "closed"} exit={{ opacity: 0 }}>+1</motion.p>
+                    </AnimatePresence>
+                </div>
+                <div>
+                    <h3 className='text-white text-3xl inline'>Streak: {streak}</h3>
+                    <AnimatePresence initial={false}>
+                        <motion.p className='text-green-400 inline mb-10 absolute' variants={variants} initial={{ opacity: 0 }} animate={animation ? "open" : "closed"} exit={{ opacity: 0 }}>+1</motion.p>
+                    </AnimatePresence>
+                </div>
             </div>
 
             <div className="flex flex-wrap justify-center gap-2">
