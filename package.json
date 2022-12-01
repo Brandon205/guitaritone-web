@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "autoprefixer": "^10.4.13",
+    "framer-motion": "^7.6.17",
     "gh-pages": "^4.0.0",
     "postcss": "^8.4.19",
     "react": "^18.2.0",

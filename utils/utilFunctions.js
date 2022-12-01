@@ -14,11 +14,11 @@ function arraysEqual(a, b) {// Checks 2 arrays for equality
 function generateNote(difficulty) { // Needs to return [null,5,null,null,null,null]
   let tempArr;
   if (difficulty === 'easy') {
-    tempArr = ['A', 'C', 'G']
+    tempArr = ['C', 'D', 'E']
   } else if (difficulty === 'medium') {
-    tempArr = ['A', 'B', 'C', 'D', 'G']
+    tempArr = ['C', 'D', 'E', 'F', 'G']
   } else if (difficulty === 'hard') {
-    tempArr = ['A', 'B', 'C', 'D', 'G', 'E', 'F']
+    tempArr = ['C', 'D', 'E', 'F', 'G', 'A', 'B']
   } else if (difficulty === 'challenging') {
     tempArr = ['A', 'A#/Bb', 'B', 'C', 'C#/Db', 'D', 'D#/Eb', 'E', 'F', 'F#/Gb', 'G', 'G#/Ab']
   }

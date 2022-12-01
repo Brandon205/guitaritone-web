@@ -31,31 +31,32 @@ export default function PitchDetection() {
     if (difficulty === 'easy') {
         content = (
             <div className="flex flex-wrap justify-center gap-2">
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600 hover:bg-neutral-600' onClick={() => takeGuess('A')}>A</button>
                 <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('C')}>C</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('G')}>G</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('D')}>D</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('E')}>E</button>
             </div>
         )
     } else if (difficulty === 'medium') {
         content = (
             <div className="flex flex-wrap justify-center gap-2">
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('A')}>A</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('B')}>B</button>
                 <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('C')}>C</button>
                 <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('D')}>D</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('E')}>E</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('F')}>F</button>
                 <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('G')}>G</button>
             </div>
         )
     } else if (difficulty === 'hard') {
         content = (
             <div className="flex flex-wrap justify-center gap-2">
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('A')}>A</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('B')}>B</button>
                 <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('C')}>C</button>
                 <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('D')}>D</button>
                 <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('E')}>E</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('F#/Gb')}>F#/Gb</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('F')}>F</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('F')}>F</button>
                 <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('G')}>G</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('A')}>A</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('B')}>B</button>
             </div>
         )
     } else if (difficulty === 'challenging') {
@@ -88,9 +89,9 @@ export default function PitchDetection() {
 
             <h1 className='text-white text-4xl'>Settings:</h1>
             <select onChange={(e) => setDifficulty(e.target.value) } name='difficulty' id='difficulty' className='p-2'>
-                <option value='easy'>Easy (G, A, C)</option>
-                <option value='medium'>Medium (G, A, B, C, D)</option>
-                <option value='hard'>Hard (G-Scale: G, A, B, C, D, E, F#)</option>
+                <option value='easy'>Easy (C, D, E)</option>
+                <option value='medium'>Medium (C, D, E, F, G)</option>
+                <option value='hard'>Hard (C-Scale: C, D, E, F, G, A, B)</option>
                 <option value='challenging'>Difficult (Chromatic Scale)</option>
             </select>
 
