@@ -13,18 +13,13 @@ export default function Intervals() {
         setCurrentInterval(generateInterval())
     }, [])
 
-    useEffect(() => {
-        if (animation) {
-            setTimeout(() => setAnimation(false), 1000)
-        }
-    }, [animation])
-
     let takeGuess = (interval) => {
         if (interval === currentInterval[2]) {
             setScore(score + 1)
             setStreak(streak + 1)
             setCurrentInterval(generateInterval())
             setAnimation(true)
+            setTimeout(() => setAnimation(false), 1000)
         } else {
             setStreak(0)
         }

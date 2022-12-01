@@ -14,18 +14,13 @@ export default function StringNote() {
         setStringNote(generateStringNote(difficulty))
     }, [difficulty])
 
-    useEffect(() => {
-        if (animation) {
-            setTimeout(() => setAnimation(false), 1000)
-        }
-    }, [animation])
-
     let takeGuess = (fret) => {
         if (fret === stringNoteKey[stringNote[0]][stringNote[1]]) {
             setScore(score + 1)
             setStreak(streak + 1)
             setStringNote(generateStringNote(difficulty))
             setAnimation(true)
+            setTimeout(() => setAnimation(false), 1000)
         } else {
             setStreak(0)
         }

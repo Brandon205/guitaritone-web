@@ -15,12 +15,6 @@ export default function PitchDetection() {
         setCurrentChord(generateNote(difficulty))
     }, [])
 
-    useEffect(() => {
-        if (animation) {
-            setTimeout(() => setAnimation(false), 1000)
-        }
-    }, [animation])
-
     let takeGuess = (note) => {
         for (let i = 0; i < key[note].length; i++) {
             if (arraysEqual(currentChord, key[note][i])) {
@@ -28,6 +22,7 @@ export default function PitchDetection() {
                 setStreak(streak + 1)
                 setCurrentChord(generateNote(difficulty))
                 setAnimation(true)
+                setTimeout(() => setAnimation(false), 1000)
                 break;
             } else {
                 setStreak(0)

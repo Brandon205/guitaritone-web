@@ -13,18 +13,13 @@ export default function GuitarChord() {
         setCurrentChord(generateChord())
     }, [])
 
-    useEffect(() => {
-        if (animation) {
-            setTimeout(() => setAnimation(false), 1000)
-        }
-    }, [animation])
-
     let takeGuess = (chordArr) => { // G: [3,2,0,0,3,3]
         if (arraysEqual(chordArr, currentChord)) {
             setScore(score + 1)
             setStreak(streak + 1)
             setCurrentChord(generateChord())
             setAnimation(true)
+            setTimeout(() => setAnimation(false), 1000)
         } else {
             setStreak(0)
         }
