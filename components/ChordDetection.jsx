@@ -27,19 +27,19 @@ export default function GuitarChord() {
         <div className='flex justify-center items-center flex-col gap-16'>
             <h1 className='text-white text-3xl'>Open Chord Test</h1>
 
-            <button onClick={() => playChord(currentChord)} className='p-2 bg-neutral-500 rounded-md text-xl text-white w-32'>Play Chord</button>
+            <button onClick={() => playChord(currentChord)} className='p-2 bg-neutral-500 rounded-md text-xl text-white w-32 hover:bg-neutral-600'>Play Chord</button>
             <h3 className='text-white text-3xl'>Score: {score}</h3>
             <h3 className='text-white text-3xl'>Streak: {streak}</h3>
 
             <div className="flex flex-wrap justify-center gap-2">
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20' onClick={() => takeGuess([null,0,2,2,2,0])}>A</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20' onClick={() => takeGuess([null,0,2,2,1,0])}>Amin</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20' onClick={() => takeGuess([null,3,2,0,1,0])}>C</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20' onClick={() => takeGuess([null,null,0,2,3,2])}>D</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20' onClick={() => takeGuess([null,0,0,2,3,1])}>Dmin</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20' onClick={() => takeGuess([0,2,2,1,0,0])}>E</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20' onClick={() => takeGuess([0,2,2,0,0,0])}>Emin</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20' onClick={() => takeGuess([3,2,0,0,0,1])}>G</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess([null,0,2,2,2,0])}>A</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess([null,0,2,2,1,0])}>Amin</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess([null,3,2,0,1,0])}>C</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess([null,null,0,2,3,2])}>D</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess([null,0,0,2,3,1])}>Dmin</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess([0,2,2,1,0,0])}>E</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess([0,2,2,0,0,0])}>Emin</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess([3,2,0,0,0,1])}>G</button>
             </div>
 
             <h1 className='text-white text-4xl'>How to use:</h1>

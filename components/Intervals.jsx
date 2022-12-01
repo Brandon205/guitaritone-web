@@ -29,14 +29,14 @@ export default function Intervals() {
     return (
         <div className='flex justify-center items-center flex-col gap-16'>
             <h1 className='text-white text-3xl'>Interval Training</h1>
-            <button onClick={() => handlePlay()} className='p-2 bg-neutral-500 rounded-md text-xl text-white w-32'>Play Interval</button>
+            <button onClick={() => handlePlay()} className='p-2 bg-neutral-500 rounded-md text-xl text-white w-32 hover:bg-neutral-600'>Play Interval</button>
             <h3 className='text-white text-3xl'>Score: {score}</h3>
             <h3 className='text-white text-3xl'>Streak: {streak}</h3>
 
             <div className="flex flex-wrap justify-center gap-2">
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20' onClick={() => takeGuess('maj3')}>Major 3rd</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20' onClick={() => takeGuess('p5')}>Perfect 5th</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20' onClick={() => takeGuess('octave')}>Octave</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('maj3')}>Major 3rd</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('p5')}>Perfect 5th</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('octave')}>Octave</button>
             </div>
 
             <h1 className='text-white text-4xl'>How to use:</h1>
