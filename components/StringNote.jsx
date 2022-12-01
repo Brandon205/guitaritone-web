@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { stringNoteKey } from '../utils/key.js';
 import { generateStringNote } from '../utils/utilFunctions';
 import { motion, AnimatePresence } from "framer-motion";
@@ -10,19 +10,27 @@ export default function StringNote() {
     const [difficulty, setDifficulty] = useState('beginner');
     const [animation, setAnimation] = useState(false);
 
+    const buttonDiv = useRef(null);
+
     useEffect(() => {
         setStringNote(generateStringNote(difficulty))
     }, [difficulty])
 
-    let takeGuess = (fret) => {
+    let takeGuess = (fret, e) => {
+        e.preventDefault();
+
         if (fret === stringNoteKey[stringNote[0]][stringNote[1]]) {
             setScore(score + 1)
             setStreak(streak + 1)
             setStringNote(generateStringNote(difficulty))
             setAnimation(true)
             setTimeout(() => setAnimation(false), 1000)
+            buttonDiv.current.childNodes.forEach(node => { // Removes the bg-red class from all of the buttons
+                node.classList.remove('bg-red-400')
+            })
         } else {
             setStreak(0)
+            e.target.classList.add('bg-red-400');
         }
     }
 
@@ -53,19 +61,19 @@ export default function StringNote() {
                 </div>
             </div>
 
-            <div className="flex flex-wrap justify-center gap-2">
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess(0)}>0</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess(1)}>1</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess(2)}>2</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess(3)}>3</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess(4)}>4</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess(5)}>5</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess(6)}>6</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess(7)}>7</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess(8)}>8</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess(9)}>9</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess(10)}>10</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess(11)}>11</button>
+            <div className="flex flex-wrap justify-center gap-2" ref={buttonDiv}>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess(0, e)}>0</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess(1, e)}>1</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess(2, e)}>2</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess(3, e)}>3</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess(4, e)}>4</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess(5, e)}>5</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess(6, e)}>6</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess(7, e)}>7</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess(8, e)}>8</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess(9, e)}>9</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess(10, e)}>10</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess(11, e)}>11</button>
             </div>
 
             <h1 className='text-white text-4xl'>Settings:</h1>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import playChord from '../utils/GuitarChords';
 import { generateInterval } from '../utils/utilFunctions';
 import { motion, AnimatePresence } from "framer-motion";
@@ -9,19 +9,27 @@ export default function Intervals() {
     const [score, setScore] = useState(0);
     const [animation, setAnimation] = useState(false);
 
+    const buttonDiv = useRef(null);
+
     useEffect(() => {
         setCurrentInterval(generateInterval())
     }, [])
 
-    let takeGuess = (interval) => {
+    let takeGuess = (interval, e) => {
+        e.preventDefault();
+
         if (interval === currentInterval[2]) {
             setScore(score + 1)
             setStreak(streak + 1)
             setCurrentInterval(generateInterval())
             setAnimation(true)
             setTimeout(() => setAnimation(false), 1000)
+            buttonDiv.current.childNodes.forEach(node => { // Removes the bg-red class from all of the buttons
+                node.classList.remove('bg-red-400')
+            })
         } else {
             setStreak(0)
+            e.target.classList.add('bg-red-400');
         }
     }
 
@@ -38,7 +46,7 @@ export default function Intervals() {
     return (
         <div className='flex justify-center items-center flex-col gap-16'>
             <h1 className='text-white text-3xl'>Interval Training</h1>
-            <button onClick={() => handlePlay()} className='p-2 bg-neutral-500 rounded-md text-xl text-white w-32 hover:bg-neutral-600'>Play Interval</button>
+            <button onClick={() => handlePlay()} className='p-2 bg-neutral-500 rounded-md text-xl text-white w-32 hover:opacity-70'>Play Interval</button>
             <div>
                 <h3 className='text-white text-3xl inline'>Score: {score} </h3>
                 <AnimatePresence initial={false}>
@@ -52,10 +60,10 @@ export default function Intervals() {
                 </AnimatePresence>
             </div>
 
-            <div className="flex flex-wrap justify-center gap-2">
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('maj3')}>Major 3rd</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('p5')}>Perfect 5th</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('octave')}>Octave</button>
+            <div className="flex flex-wrap justify-center gap-2" ref={buttonDiv}>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('maj3', e)}>Major 3rd</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('p5', e)}>Perfect 5th</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('octave', e)}>Octave</button>
             </div>
 
             <h1 className='text-white text-4xl'>How to use:</h1>

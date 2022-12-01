@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import playChord from '../utils/GuitarChords';
 import { key } from '../utils/key.js';
 import { arraysEqual, generateNote } from '../utils/utilFunctions';
@@ -11,11 +11,15 @@ export default function PitchDetection() {
     const [difficulty, setDifficulty] = useState('easy');
     const [animation, setAnimation] = useState(false);
 
+    const buttonDiv = useRef(null);
+
     useEffect(() => {
         setCurrentChord(generateNote(difficulty))
     }, [])
 
-    let takeGuess = (note) => {
+    let takeGuess = (note, e) => {
+        e.preventDefault();
+
         for (let i = 0; i < key[note].length; i++) {
             if (arraysEqual(currentChord, key[note][i])) {
                 setScore(score + 1)
@@ -23,9 +27,13 @@ export default function PitchDetection() {
                 setCurrentChord(generateNote(difficulty))
                 setAnimation(true)
                 setTimeout(() => setAnimation(false), 1000)
+                buttonDiv.current.childNodes.forEach(node => { // Removes the bg-red class from all of the buttons
+                    node.classList.remove('bg-red-400')
+                })
                 break;
             } else {
                 setStreak(0)
+                e.target.classList.add('bg-red-400');
             }
         }
         return;
@@ -34,50 +42,49 @@ export default function PitchDetection() {
     let content;
     if (difficulty === 'easy') {
         content = (
-            <div className="flex flex-wrap justify-center gap-2">
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('C')}>C</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('D')}>D</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('E')}>E</button>
+            <div className="flex flex-wrap justify-center gap-2" ref={buttonDiv}>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('C', e)}>C</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('D', e)}>D</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('E', e)}>E</button>
             </div>
         )
     } else if (difficulty === 'medium') {
         content = (
-            <div className="flex flex-wrap justify-center gap-2">
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('C')}>C</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('D')}>D</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('E')}>E</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('F')}>F</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('G')}>G</button>
+            <div className="flex flex-wrap justify-center gap-2" ref={buttonDiv}>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('C', e)}>C</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('D', e)}>D</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('E', e)}>E</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('F', e)}>F</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('G', e)}>G</button>
             </div>
         )
     } else if (difficulty === 'hard') {
         content = (
-            <div className="flex flex-wrap justify-center gap-2">
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('C')}>C</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('D')}>D</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('E')}>E</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('F')}>F</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('F')}>F</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('G')}>G</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('A')}>A</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('B')}>B</button>
+            <div className="flex flex-wrap justify-center gap-2" ref={buttonDiv}>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('C', e)}>C</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('D', e)}>D</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('E', e)}>E</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('F', e)}>F</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('G', e)}>G</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('A', e)}>A</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('B', e)}>B</button>
             </div>
         )
     } else if (difficulty === 'challenging') {
         content = (
-            <div className="flex flex-wrap justify-center gap-2">
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('A')}>A</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('A#/Bb')}>A#/Bb</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('B')}>B</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('C')}>C</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('C#/Db')}>C#/Db</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('D')}>D</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('D#/Eb')}>D#/Eb</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('E')}>E</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('F')}>F</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('F#/Gb')}>F#/Gb</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('G')}>G</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess('G#/Ab')}>G#/Ab</button>
+            <div className="flex flex-wrap justify-center gap-2" ref={buttonDiv}>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('A', e)}>A</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('A#/Bb', e)}>A#/Bb</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('B', e)}>B</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('C', e)}>C</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('C#/Db', e)}>C#/Db</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('D', e)}>D</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('D#/Eb', e)}>D#/Eb</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('E', e)}>E</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('F', e)}>F</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('F#/Gb', e)}>F#/Gb</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('G', e)}>G</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('G#/Ab', e)}>G#/Ab</button>
             </div>
         )
     }
@@ -90,7 +97,7 @@ export default function PitchDetection() {
     return (
         <div className='flex justify-center items-center flex-col gap-16'>
             <h1 className='text-white text-3xl'>Pitch Detection Test</h1>
-            <button onClick={() => playChord(currentChord)} className='p-2 bg-neutral-500 rounded-md text-xl text-white w-32 hover:bg-neutral-600'>Play Note</button>
+            <button onClick={() => playChord(currentChord)} className='p-2 bg-neutral-500 rounded-md text-xl text-white w-32 hover:opacity-70'>Play Note</button>
             <div>
                 <h3 className='text-white text-3xl inline'>Score: {score} </h3>
                 <AnimatePresence initial={false}>

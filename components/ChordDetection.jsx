@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import playChord from '../utils/GuitarChords';
 import { arraysEqual, generateChord } from '../utils/utilFunctions';
 import { motion, AnimatePresence } from "framer-motion";
@@ -9,19 +9,27 @@ export default function GuitarChord() {
     const [score, setScore] = useState(0);
     const [animation, setAnimation] = useState(false);
 
+    const buttonDiv = useRef(null);
+
     useEffect(() => {
         setCurrentChord(generateChord())
     }, [])
 
-    let takeGuess = (chordArr) => { // G: [3,2,0,0,3,3]
+    let takeGuess = (chordArr, e) => { // G: [3,2,0,0,3,3]
+        e.preventDefault();
+
         if (arraysEqual(chordArr, currentChord)) {
             setScore(score + 1)
             setStreak(streak + 1)
             setCurrentChord(generateChord())
             setAnimation(true)
             setTimeout(() => setAnimation(false), 1000)
+            buttonDiv.current.childNodes.forEach(node => { // Removes the bg-red class from all of the buttons
+                node.classList.remove('bg-red-400')
+            })
         } else {
             setStreak(0)
+            e.target.classList.add('bg-red-400');
         }
     }
 
@@ -34,7 +42,7 @@ export default function GuitarChord() {
         <div className='flex justify-center items-center flex-col gap-16'>
             <h1 className='text-white text-3xl'>Open Chord Test</h1>
 
-            <button onClick={() => playChord(currentChord)} className='p-2 bg-neutral-500 rounded-md text-xl text-white w-32 hover:bg-neutral-600'>Play Chord</button>
+            <button onClick={() => playChord(currentChord)} className='p-2 bg-neutral-500 rounded-md text-xl text-white w-32 hover:opacity-70'>Play Chord</button>
             <div>
                 <h3 className='text-white text-3xl inline'>Score: {score} </h3>
                 <AnimatePresence initial={false}>
@@ -48,15 +56,15 @@ export default function GuitarChord() {
                 </AnimatePresence>
             </div>
 
-            <div className="flex flex-wrap justify-center gap-2">
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess([null,0,2,2,2,0])}>A</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess([null,0,2,2,1,0])}>Amin</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess([null,3,2,0,1,0])}>C</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess([null,null,0,2,3,2])}>D</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess([null,0,0,2,3,1])}>Dmin</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess([0,2,2,1,0,0])}>E</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess([0,2,2,0,0,0])}>Emin</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:bg-neutral-600' onClick={() => takeGuess([3,2,0,0,0,1])}>G</button>
+            <div className="flex flex-wrap justify-center gap-2" ref={buttonDiv}>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess([null,0,2,2,2,0], e)}>A</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess([null,0,2,2,1,0], e)}>Amin</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess([null,3,2,0,1,0], e)}>C</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess([null,null,0,2,3,2], e)}>D</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess([null,0,0,2,3,1], e)}>Dmin</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess([0,2,2,1,0,0], e)}>E</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess([0,2,2,0,0,0], e)}>Emin</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess([3,2,0,0,0,1], e)}>G</button>
             </div>
 
             <h1 className='text-white text-4xl'>How to use:</h1>
