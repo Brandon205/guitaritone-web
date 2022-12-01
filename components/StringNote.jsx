@@ -50,7 +50,7 @@ export default function StringNote() {
             </div>
 
             <h1 className='text-white text-4xl'>Settings:</h1>
-            <select onChange={(e) => setDifficulty(e.target.value) } name='difficulty' id='difficulty'>
+            <select onChange={(e) => setDifficulty(e.target.value) } name='difficulty' id='difficulty' className='p-2'>
                 <option value='beginner'>Beginner (No # or b Notes)</option>
                 <option value='intermediate'>Intermediate (All notes)</option>
             </select>
