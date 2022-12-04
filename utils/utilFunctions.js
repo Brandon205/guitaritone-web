@@ -88,24 +88,29 @@ function generateInterval() {
   return [arr1, arr2, interval]
 }
 
-function generateStringNote(difficulty) {
+function generateString() {
   let stringOptions = ['E (6th)', 'A (5th)', 'D (4th)', 'G (3rd)', 'B (2nd)', 'e (1st)', ]
   let randomString = Math.floor(Math.random() * 5)
   randomString = stringOptions[randomString]
-  let random2 = Object.keys(stringNoteKey)[Math.floor(Math.random() * 5)]
 
-  let tempArr = [randomString];
+  console.log("randomString", randomString)
+  
+  return randomString
+}
+
+function generateStringNote(difficulty) {
+  let randomNote;
   if (difficulty === 'beginner') {
     let randomNoteArr = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
     let randomNoteIndex = Math.floor(Math.random() * randomNoteArr.length)
 
-    tempArr.push(randomNoteArr[randomNoteIndex])
+    randomNote = randomNoteArr[randomNoteIndex]
   } else if (difficulty === 'intermediate') {
-    let randomNote = Object.keys(stringNoteKey['E (6th)'])[Math.floor(Math.random() * 12)]
-    tempArr.push(randomNote)
+    randomNote = Object.keys(stringNoteKey['E (6th)'])[Math.floor(Math.random() * 12)]
   }
 
-  return tempArr
+  console.log("randomNote", randomNote)
+  return randomNote
 }
 
-export {arraysEqual, generateNote, generateChord, generateInterval, generateStringNote}
+export {arraysEqual, generateNote, generateChord, generateInterval, generateString, generateStringNote}

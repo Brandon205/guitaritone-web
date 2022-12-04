@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { stringNoteKey } from '../utils/key.js';
-import { generateStringNote } from '../utils/utilFunctions';
+import { generateString, generateStringNote } from '../utils/utilFunctions.js';
 import { motion, AnimatePresence } from "framer-motion";
+
+import { BsFillLockFill, BsFillUnlockFill } from 'react-icons/bs';
 
 export default function StringNote() {
     const [score, setScore] = useState(0);
@@ -9,11 +11,15 @@ export default function StringNote() {
     const [stringNote, setStringNote] = useState(['E (6th)', 'A']);
     const [difficulty, setDifficulty] = useState('beginner');
     const [animation, setAnimation] = useState(false);
+    const [stringLock, setStringLock] = useState('');
+    const [noteLock, setNoteLock] = useState('');
 
     const buttonDiv = useRef(null);
 
     useEffect(() => {
-        setStringNote(generateStringNote(difficulty))
+        setStringNote([generateString(), generateStringNote(difficulty)])
+        setNoteLock('')
+        setStringLock('')
     }, [difficulty])
 
     let takeGuess = (fret, e) => {
@@ -22,7 +28,15 @@ export default function StringNote() {
         if (fret === stringNoteKey[stringNote[0]][stringNote[1]]) {
             setScore(score + 1)
             setStreak(streak + 1)
-            setStringNote(generateStringNote(difficulty))
+            console.log(stringLock, noteLock, stringNote)
+            if (stringLock !== '') {
+                setStringNote([stringLock, generateStringNote(difficulty)])
+            } else if (noteLock !== '') {
+                setStringNote([generateString(), noteLock])
+            } else {
+                setStringNote([generateString(), generateStringNote(difficulty)])
+        
+            }
             setAnimation(true)
             setTimeout(() => setAnimation(false), 1000)
             buttonDiv.current.childNodes.forEach(node => { // Removes the bg-red class from all of the buttons
@@ -34,6 +48,22 @@ export default function StringNote() {
         }
     }
 
+    let handleLock = (type) => {
+        if (type === 'string') {
+            if (stringLock === '') {
+                setStringLock(stringNote[0])
+            } else {
+                setStringLock('')
+            }
+        } else if (type === 'note') {
+            if (noteLock === '') {
+                setNoteLock(stringNote[1])
+            } else {
+                setNoteLock('')
+            }
+        }
+    }
+
     const variants = {
         open: { opacity: 1, y: 0 },
         closed: { opacity: 0, y: "-25%" },
@@ -42,9 +72,23 @@ export default function StringNote() {
     return (
         <div className='flex justify-center items-center flex-col gap-16'>
             <h1 className='text-white text-3xl'>Learn the Guitar Fretboard</h1>
-            <div className='flex flex-col items-center'>
-                <h2 className='text-white text-3xl'>String: <span>{stringNote[0]}</span></h2>
-                <h2 className='text-white text-3xl'>Note: <span>{stringNote[1]}</span></h2>
+            <div className='flex flex-col items-center gap-4'>
+                <div className='flex items-center gap-3'>
+                    <h2 className='text-white text-3xl inline'>String: <span>{stringNote[0]} </span></h2>
+                    {stringLock ? (
+                        <BsFillLockFill className='cursor-pointer text-white text-2xl inline' onClick={() => handleLock('string')} />
+                    ) : (
+                        <BsFillUnlockFill className='cursor-pointer text-white text-2xl inline' onClick={() => handleLock('string')} />
+                    )}
+                </div>
+                <div className='flex items-center gap-3'>
+                    <h2 className='text-white text-3xl inline'>Note: <span>{stringNote[1]} </span></h2>
+                    {noteLock ? (
+                        <BsFillLockFill className='cursor-pointer text-white text-2xl inline' onClick={() => handleLock('note')} />
+                    ) : (
+                        <BsFillUnlockFill className='cursor-pointer text-white text-2xl inline' onClick={() => handleLock('note')} />
+                    )}
+                </div>
             </div>
             <div>
                 <div>
