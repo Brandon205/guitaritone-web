@@ -73,8 +73,8 @@ export default function StringNote() {
 
     return (
         <div className='flex justify-center items-center flex-col gap-16'>
-            <div className="flex items-center gap-16 justify-around flex-col w-full text-center">
-                <h1 className='text-white text-5xl mt-8'>Learn the Guitar Fretboard</h1>
+            <div className="flex items-center gap-8 justify-around flex-col w-full text-center">
+                <h1 className='text-white text-5xl mt-8'>Learn the Fretboard</h1>
                 <div className='flex flex-col items-center gap-4'>
                     <div className='flex items-center gap-3'>
                         <h2 className='text-[#4b5975] text-3xl inline'>String: <span className='text-white'>{stringNote[0]} </span></h2>

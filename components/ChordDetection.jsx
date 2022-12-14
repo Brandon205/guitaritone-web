@@ -43,7 +43,7 @@ export default function GuitarChord() {
     };
 
     return (
-        <div className='flex justify-center items-center flex-col gap-16'>
+        <div className='flex justify-center items-center flex-col gap-12'>
             <div className="h-[62vh] flex items-center justify-around flex-col gap-y-10 text-center">
                 <h1 className='text-white text-5xl mt-8'>Open Chord Test</h1>
                 <button onClick={() => playChord(currentChord)} className='p-5 bg-[#4b5975] rounded-md text-4xl text-white hover:opacity-70'>Play Chord</button>
