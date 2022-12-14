@@ -100,13 +100,13 @@ export default function PitchDetection() {
 
     return (
         <div className='flex justify-center items-center flex-col gap-16'>
-            <div className="h-[75vh] flex items-center justify-around flex-col gap-y-10 text-center">
-                <h1 className='text-white text-5xl'>Pitch Detection Test</h1>
+            <div className="h-[82vh] flex items-center justify-around flex-col gap-y-10 text-center">
+                <h1 className='text-white text-5xl mt-8'>Pitch Detection Test</h1>
                 <button onClick={() => playChord(currentChord)} className='p-5 bg-[#4b5975] rounded-md text-4xl text-white hover:opacity-70'>Play Note</button>
 
                 <div className='flex gap-16'>
                     <div className='bg-[#4b5975] py-5 px-8 flex flex-col items-center gap-3 rounded-lg relative'>
-                        <MdScore className='text-4xl text-white' />
+                        <MdScore className='text-4xl text-green-400' />
                         <h3 className='text-white text-5xl'>{score}</h3>
                         <AnimatePresence initial={false}>
                             <motion.p className='text-green-400 text-xl right-3 bottom-1/4 absolute' variants={variants} initial={{ opacity: 0 }} animate={animation ? "open" : "closed"} exit={{ opacity: 0 }}>+1</motion.p>

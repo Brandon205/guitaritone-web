@@ -4,6 +4,8 @@ import { generateString, generateStringNote } from '../utils/utilFunctions.js';
 import { motion, AnimatePresence } from "framer-motion";
 
 import { BsFillLockFill, BsFillUnlockFill } from 'react-icons/bs';
+import { AiFillFire } from 'react-icons/ai';
+import { MdScore } from 'react-icons/md';
 
 export default function StringNote() {
     const [score, setScore] = useState(0);
@@ -71,38 +73,43 @@ export default function StringNote() {
 
     return (
         <div className='flex justify-center items-center flex-col gap-16'>
-            <h1 className='text-white text-3xl'>Learn the Guitar Fretboard</h1>
-            <div className='flex flex-col items-center gap-4'>
-                <div className='flex items-center gap-3'>
-                    <h2 className='text-white text-3xl inline'>String: <span>{stringNote[0]} </span></h2>
-                    {stringLock ? (
-                        <BsFillLockFill className='cursor-pointer text-white text-2xl inline' onClick={() => handleLock('string')} />
-                    ) : (
-                        <BsFillUnlockFill className='cursor-pointer text-white text-2xl inline' onClick={() => handleLock('string')} />
-                    )}
+            <div className="flex items-center gap-16 justify-around flex-col w-full text-center">
+                <h1 className='text-white text-5xl mt-8'>Learn the Guitar Fretboard</h1>
+                <div className='flex flex-col items-center gap-4'>
+                    <div className='flex items-center gap-3'>
+                        <h2 className='text-[#4b5975] text-3xl inline'>String: <span className='text-white'>{stringNote[0]} </span></h2>
+                        {stringLock ? (
+                            <BsFillLockFill className='cursor-pointer text-white text-2xl inline' onClick={() => handleLock('string')} />
+                        ) : (
+                            <BsFillUnlockFill className='cursor-pointer text-white text-2xl inline' onClick={() => handleLock('string')} />
+                        )}
+                    </div>
+                    <div className='flex items-center gap-3'>
+                        <h2 className='text-[#4b5975] text-3xl inline'>Note: <span className='text-white'>{stringNote[1]} </span></h2>
+                        {noteLock ? (
+                            <BsFillLockFill className='cursor-pointer text-white text-2xl inline' onClick={() => handleLock('note')} />
+                        ) : (
+                            <BsFillUnlockFill className='cursor-pointer text-white text-2xl inline' onClick={() => handleLock('note')} />
+                        )}
+                    </div>
                 </div>
-                <div className='flex items-center gap-3'>
-                    <h2 className='text-white text-3xl inline'>Note: <span>{stringNote[1]} </span></h2>
-                    {noteLock ? (
-                        <BsFillLockFill className='cursor-pointer text-white text-2xl inline' onClick={() => handleLock('note')} />
-                    ) : (
-                        <BsFillUnlockFill className='cursor-pointer text-white text-2xl inline' onClick={() => handleLock('note')} />
-                    )}
+                <div className='flex gap-16'>
+                    <div className='bg-[#4b5975] py-5 px-8 flex flex-col items-center gap-3 rounded-lg relative'>
+                        <MdScore className='text-4xl text-green-400' />
+                        <h3 className='text-white text-5xl'>{score}</h3>
+                        <AnimatePresence initial={false}>
+                            <motion.p className='text-green-400 text-xl right-3 bottom-1/4 absolute' variants={variants} initial={{ opacity: 0 }} animate={animation ? "open" : "closed"} exit={{ opacity: 0 }}>+1</motion.p>
+                        </AnimatePresence>
+                    </div>
+                    <div className='bg-[#4b5975] py-5 px-8 flex flex-col items-center gap-3 rounded-lg relative'>
+                        <AiFillFire className='text-4xl text-orange-500' />
+                        <h3 className='text-white text-5xl'>{streak}</h3>
+                        <AnimatePresence initial={false}>
+                            <motion.p className='text-green-400 text-xl right-3 bottom-1/4 absolute' variants={variants} initial={{ opacity: 0 }} animate={animation ? "open" : "closed"} exit={{ opacity: 0 }}>+1</motion.p>
+                        </AnimatePresence>
+                    </div>
                 </div>
-            </div>
-            <div>
-                <div>
-                    <h3 className='text-white text-3xl inline'>Score: {score} </h3>
-                    <AnimatePresence initial={false}>
-                        <motion.p className='text-green-400 inline mb-10 absolute' variants={variants} initial={{ opacity: 0 }} animate={animation ? "open" : "closed"} exit={{ opacity: 0 }}>+1</motion.p>
-                    </AnimatePresence>
-                </div>
-                <div>
-                    <h3 className='text-white text-3xl inline'>Streak: {streak}</h3>
-                    <AnimatePresence initial={false}>
-                        <motion.p className='text-green-400 inline mb-10 absolute' variants={variants} initial={{ opacity: 0 }} animate={animation ? "open" : "closed"} exit={{ opacity: 0 }}>+1</motion.p>
-                    </AnimatePresence>
-                </div>
+
             </div>
 
             <div className="flex flex-wrap justify-center gap-2" ref={buttonDiv}>
@@ -121,7 +128,7 @@ export default function StringNote() {
             </div>
 
             <h1 className='text-white text-4xl'>Settings:</h1>
-            <select onChange={(e) => setDifficulty(e.target.value) } name='difficulty' id='difficulty' className='p-2'>
+            <select onChange={(e) => setDifficulty(e.target.value) } name='difficulty' id='difficulty' className='p-2 text-white bg-[#4b5975] text-lg rounded-md'>
                 <option value='beginner'>Beginner (No # or b Notes)</option>
                 <option value='intermediate'>Intermediate (All notes)</option>
             </select>
