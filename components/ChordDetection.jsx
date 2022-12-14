@@ -25,11 +25,11 @@ export default function GuitarChord() {
             setAnimation(true)
             setTimeout(() => setAnimation(false), 1000)
             buttonDiv.current.childNodes.forEach(node => { // Removes the bg-red class from all of the buttons
-                node.classList.remove('bg-red-500')
+                node.style.backgroundColor = '#737373';
             })
         } else {
             setStreak(0)
-            e.target.classList.add('bg-red-500');
+            e.target.style.backgroundColor = '#EF4444';
         }
     }
 

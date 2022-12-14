@@ -28,12 +28,12 @@ export default function PitchDetection() {
                 setAnimation(true)
                 setTimeout(() => setAnimation(false), 1000)
                 buttonDiv.current.childNodes.forEach(node => { // Removes the bg-red class from all of the buttons
-                    node.classList.remove('bg-red-500')
+                    node.style.backgroundColor = '#737373';
                 })
                 break;
             } else {
                 setStreak(0)
-                e.target.classList.add('bg-red-500');
+                e.target.style.backgroundColor = '#EF4444';
             }
         }
         return;
@@ -51,7 +51,7 @@ export default function PitchDetection() {
     } else if (difficulty === 'medium') {
         content = (
             <div className="flex flex-wrap justify-center gap-2" ref={buttonDiv}>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('C', e)}>C</button>
+                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70 bg-red-500' onClick={(e) => takeGuess('C', e)}>C</button>
                 <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('D', e)}>D</button>
                 <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('E', e)}>E</button>
                 <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('F', e)}>F</button>
