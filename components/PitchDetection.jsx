@@ -4,6 +4,9 @@ import { key } from '../utils/key.js';
 import { arraysEqual, generateNote } from '../utils/utilFunctions';
 import { motion, AnimatePresence } from "framer-motion";
 
+import { AiFillFire } from 'react-icons/ai';
+import { MdScore } from 'react-icons/md';
+
 export default function PitchDetection() {
     const [currentChord, setCurrentChord] = useState([null,null,null,null,null,null])
     const [score, setScore] = useState(0);
@@ -28,12 +31,13 @@ export default function PitchDetection() {
                 setAnimation(true)
                 setTimeout(() => setAnimation(false), 1000)
                 buttonDiv.current.childNodes.forEach(node => { // Removes the bg-red class from all of the buttons
-                    node.style.backgroundColor = '#737373';
+                    node.style.backgroundColor = '#4b5975';
                 })
+                playChord(currentChord)
                 break;
             } else {
                 setStreak(0)
-                e.target.style.backgroundColor = '#EF4444';
+                e.target.style.backgroundColor = '#b81b2c';
             }
         }
         return;
@@ -43,48 +47,48 @@ export default function PitchDetection() {
     if (difficulty === 'easy') {
         content = (
             <div className="flex flex-wrap justify-center gap-2" ref={buttonDiv}>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('C', e)}>C</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('D', e)}>D</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('E', e)}>E</button>
+                <button className='p-2 bg-[#4b5975] rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('C', e)}>C</button>
+                <button className='p-2 bg-[#4b5975] rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('D', e)}>D</button>
+                <button className='p-2 bg-[#4b5975] rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('E', e)}>E</button>
             </div>
         )
     } else if (difficulty === 'medium') {
         content = (
             <div className="flex flex-wrap justify-center gap-2" ref={buttonDiv}>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70 bg-red-500' onClick={(e) => takeGuess('C', e)}>C</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('D', e)}>D</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('E', e)}>E</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('F', e)}>F</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('G', e)}>G</button>
+                <button className='p-2 bg-[#4b5975] rounded-md text-xl text-white w-20  hover:opacity-70 bg-red-500' onClick={(e) => takeGuess('C', e)}>C</button>
+                <button className='p-2 bg-[#4b5975] rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('D', e)}>D</button>
+                <button className='p-2 bg-[#4b5975] rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('E', e)}>E</button>
+                <button className='p-2 bg-[#4b5975] rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('F', e)}>F</button>
+                <button className='p-2 bg-[#4b5975] rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('G', e)}>G</button>
             </div>
         )
     } else if (difficulty === 'hard') {
         content = (
             <div className="flex flex-wrap justify-center gap-2" ref={buttonDiv}>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('C', e)}>C</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('D', e)}>D</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('E', e)}>E</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('F', e)}>F</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('G', e)}>G</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('A', e)}>A</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('B', e)}>B</button>
+                <button className='p-2 bg-[#4b5975] rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('C', e)}>C</button>
+                <button className='p-2 bg-[#4b5975] rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('D', e)}>D</button>
+                <button className='p-2 bg-[#4b5975] rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('E', e)}>E</button>
+                <button className='p-2 bg-[#4b5975] rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('F', e)}>F</button>
+                <button className='p-2 bg-[#4b5975] rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('G', e)}>G</button>
+                <button className='p-2 bg-[#4b5975] rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('A', e)}>A</button>
+                <button className='p-2 bg-[#4b5975] rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('B', e)}>B</button>
             </div>
         )
     } else if (difficulty === 'challenging') {
         content = (
             <div className="flex flex-wrap justify-center gap-2" ref={buttonDiv}>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('A', e)}>A</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('A#/Bb', e)}>A#/Bb</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('B', e)}>B</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('C', e)}>C</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('C#/Db', e)}>C#/Db</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('D', e)}>D</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('D#/Eb', e)}>D#/Eb</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('E', e)}>E</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('F', e)}>F</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('F#/Gb', e)}>F#/Gb</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('G', e)}>G</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('G#/Ab', e)}>G#/Ab</button>
+                <button className='p-2 bg-[#4b5975] rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('A', e)}>A</button>
+                <button className='p-2 bg-[#4b5975] rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('A#/Bb', e)}>A#/Bb</button>
+                <button className='p-2 bg-[#4b5975] rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('B', e)}>B</button>
+                <button className='p-2 bg-[#4b5975] rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('C', e)}>C</button>
+                <button className='p-2 bg-[#4b5975] rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('C#/Db', e)}>C#/Db</button>
+                <button className='p-2 bg-[#4b5975] rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('D', e)}>D</button>
+                <button className='p-2 bg-[#4b5975] rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('D#/Eb', e)}>D#/Eb</button>
+                <button className='p-2 bg-[#4b5975] rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('E', e)}>E</button>
+                <button className='p-2 bg-[#4b5975] rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('F', e)}>F</button>
+                <button className='p-2 bg-[#4b5975] rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('F#/Gb', e)}>F#/Gb</button>
+                <button className='p-2 bg-[#4b5975] rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('G', e)}>G</button>
+                <button className='p-2 bg-[#4b5975] rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess('G#/Ab', e)}>G#/Ab</button>
             </div>
         )
     }
@@ -96,36 +100,46 @@ export default function PitchDetection() {
 
     return (
         <div className='flex justify-center items-center flex-col gap-16'>
-            <h1 className='text-white text-3xl'>Pitch Detection Test</h1>
-            <button onClick={() => playChord(currentChord)} className='p-2 bg-neutral-500 rounded-md text-xl text-white w-32 hover:opacity-70'>Play Note</button>
-            <div>
-                <h3 className='text-white text-3xl inline'>Score: {score} </h3>
-                <AnimatePresence initial={false}>
-                    <motion.p className='text-green-400 inline mb-10 absolute' variants={variants} initial={{ opacity: 0 }} animate={animation ? "open" : "closed"} exit={{ opacity: 0 }}>+1</motion.p>
-                </AnimatePresence>
+            <div className="h-[75vh] flex items-center justify-around flex-col gap-y-10 text-center">
+                <h1 className='text-white text-5xl'>Pitch Detection Test</h1>
+                <button onClick={() => playChord(currentChord)} className='p-5 bg-[#4b5975] rounded-md text-4xl text-white hover:opacity-70'>Play Note</button>
+
+                <div className='flex gap-16'>
+                    <div className='bg-[#4b5975] py-5 px-8 flex flex-col items-center gap-3 rounded-lg relative'>
+                        <MdScore className='text-4xl text-white' />
+                        <h3 className='text-white text-5xl'>{score}</h3>
+                        <AnimatePresence initial={false}>
+                            <motion.p className='text-green-400 text-xl right-3 bottom-1/4 absolute' variants={variants} initial={{ opacity: 0 }} animate={animation ? "open" : "closed"} exit={{ opacity: 0 }}>+1</motion.p>
+                        </AnimatePresence>
+                    </div>
+                    <div className='bg-[#4b5975] py-5 px-8 flex flex-col items-center gap-3 rounded-lg'>
+                        <AiFillFire className='text-4xl text-orange-500' />
+                        <h3 className='text-white text-5xl'>{streak}</h3>
+                        <AnimatePresence initial={false}>
+                            <motion.p className='text-green-400 text-xl right-3 bottom-1/4 absolute' variants={variants} initial={{ opacity: 0 }} animate={animation ? "open" : "closed"} exit={{ opacity: 0 }}>+1</motion.p>
+                        </AnimatePresence>
+                    </div>
+                </div>
+
+                {content}
             </div>
-            <div>
-                <h3 className='text-white text-3xl inline'>Streak: {streak}</h3>
-                <AnimatePresence initial={false}>
-                    <motion.p className='text-green-400 inline mb-10 absolute' variants={variants} initial={{ opacity: 0 }} animate={animation ? "open" : "closed"} exit={{ opacity: 0 }}>+1</motion.p>
-                </AnimatePresence>
-            </div>
 
-            {content}
+            <h2 className='text-white text-5xl'>Settings:</h2>
+            <form action='#' className='flex flex-col justify-start'>
+                <label htmlFor="difficulty" className='text-white text-2xl opacity-40'>Difficulty Level</label>
+                <select onChange={(e) => setDifficulty(e.target.value) } name='difficulty' id='difficulty' className='p-2 text-white bg-[#4b5975] text-lg rounded-md'>
+                    <option value='easy'>Easy (C, D, E)</option>
+                    <option value='medium'>Medium (C, D, E, F, G)</option>
+                    <option value='hard'>Hard (C-Scale: C, D, E, F, G, A, B)</option>
+                    <option value='challenging'>Difficult (Chromatic Scale)</option>
+                </select>
+            </form>
 
-            <h1 className='text-white text-4xl'>Settings:</h1>
-            <select onChange={(e) => setDifficulty(e.target.value) } name='difficulty' id='difficulty' className='p-2'>
-                <option value='easy'>Easy (C, D, E)</option>
-                <option value='medium'>Medium (C, D, E, F, G)</option>
-                <option value='hard'>Hard (C-Scale: C, D, E, F, G, A, B)</option>
-                <option value='challenging'>Difficult (Chromatic Scale)</option>
-            </select>
-
-            <h1 className='text-white text-4xl'>How to use:</h1>
+            <h3 className='text-white text-5xl'>How to use:</h3>
             <ul className='p-2 text-white'>
-                <li className='mb-3'>1. Hit the "Play Note" button to hear a note.</li>
-                <li className='mb-3'>2. From there try your best, either by humming the note or by trying to play it on your guitar.</li>
-                <li className='mb-3'>3. Once you think you have it go ahead and take a guess.</li>
+                <li className='mb-5 text-xl'>1. Hit the "Play Note" button to hear a note.</li>
+                <li className='mb-5 text-xl'>2. From there try your best, either by humming the note or by trying to play it on your guitar.</li>
+                <li className='mb-5 text-xl'>3. Once you think you have it go ahead and take a guess.</li>
             </ul>
         </div>
     )

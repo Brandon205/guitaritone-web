@@ -40,11 +40,11 @@ export default function StringNote() {
             setAnimation(true)
             setTimeout(() => setAnimation(false), 1000)
             buttonDiv.current.childNodes.forEach(node => { // Removes the bg-red class from all of the buttons
-                node.style.backgroundColor = '#737373';
+                node.style.backgroundColor = '#4b5975';
             })
         } else {
             setStreak(0)
-            e.target.style.backgroundColor = '#EF4444';
+            e.target.style.backgroundColor = '#b81b2c';
         }
     }
 
@@ -106,18 +106,18 @@ export default function StringNote() {
             </div>
 
             <div className="flex flex-wrap justify-center gap-2" ref={buttonDiv}>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess(0, e)}>0</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess(1, e)}>1</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess(2, e)}>2</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess(3, e)}>3</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess(4, e)}>4</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess(5, e)}>5</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess(6, e)}>6</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess(7, e)}>7</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess(8, e)}>8</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess(9, e)}>9</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess(10, e)}>10</button>
-                <button className='p-2 bg-neutral-500 rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess(11, e)}>11</button>
+                <button className='p-2 bg-[#4b5975] rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess(0, e)}>0</button>
+                <button className='p-2 bg-[#4b5975] rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess(1, e)}>1</button>
+                <button className='p-2 bg-[#4b5975] rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess(2, e)}>2</button>
+                <button className='p-2 bg-[#4b5975] rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess(3, e)}>3</button>
+                <button className='p-2 bg-[#4b5975] rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess(4, e)}>4</button>
+                <button className='p-2 bg-[#4b5975] rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess(5, e)}>5</button>
+                <button className='p-2 bg-[#4b5975] rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess(6, e)}>6</button>
+                <button className='p-2 bg-[#4b5975] rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess(7, e)}>7</button>
+                <button className='p-2 bg-[#4b5975] rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess(8, e)}>8</button>
+                <button className='p-2 bg-[#4b5975] rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess(9, e)}>9</button>
+                <button className='p-2 bg-[#4b5975] rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess(10, e)}>10</button>
+                <button className='p-2 bg-[#4b5975] rounded-md text-xl text-white w-20  hover:opacity-70' onClick={(e) => takeGuess(11, e)}>11</button>
             </div>
 
             <h1 className='text-white text-4xl'>Settings:</h1>
