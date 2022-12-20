@@ -79,11 +79,14 @@ export default function Intervals() {
             </div>
 
             <h1 className='text-white text-4xl'>How to use:</h1>
-            <ul className='p-2 text-white'>
-                <li className='mb-3'>1. Hit the "Play Interval" button on your screen to have the 2 notes play.</li>
-                <li className='mb-3'>2. These 2 notes are an interval apart, you need to find what that interval is and guess it.</li>
+            <ol className='p-2 text-white'>
+                <li className='mb-3'>1. Hit the "Play Interval" button on your screen to have 2 random notes play.</li>
+                <li className='mb-3'>2. These 2 notes are one of the interval options apart, you need to find what that interval is and guess it.</li>
                 <li className='mb-3'>3. If you guess correctly both your score and streak will increase, if not then then your streak will be reset and your score will remain the same. Good luck!</li>
-            </ul>
+            </ol>
+
+            <h1 className='text-white text-4xl'>Why should I practice interval training?</h1>
+            <p className='text-white w-3/4 my-0 mx-auto tracking-wide leading-8 text-xl text-center'>Interval training is one of the most important steps in developing relative pitch or just practicing note recognition in general. Say you hear or play an A note, then another note is played. After some practice you should be able to tell the interval between the A note and the next note and based off of that difference you can tell exactly what the next note is.</p>
         </div>
     )
 }

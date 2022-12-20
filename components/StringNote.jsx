@@ -134,11 +134,14 @@ export default function StringNote() {
             </select>
 
             <h1 className='text-white text-4xl'>How to use:</h1>
-            <ul className='p-2 text-white'>
+            <ol className='p-2 text-white'>
                 <li className='mb-3'>1. Select the difficulty you want, the only difference is if you want to practice with Sharp and flat notes and their positions</li>
                 <li className='mb-3'>2. Then a random String and Note will be displayed on your screen, on your guitar find what fret that note is on for that string and take a guess.</li>
                 <li className='mb-3'>3. If you got it right, your score and streak will increase. If you get it wrong the score won't increase and your streak will be reset to 0.</li>
-            </ul>
+            </ol>
+
+            <h1 className='text-white text-4xl'>Why should I learn the notes on the fretboard?</h1>
+            <p className='text-white w-3/4 my-0 mx-auto tracking-wide leading-8 text-xl text-center'>Learning the notes on the fretboard of the guitar can greatly improve your overall guitar playing skills. By understanding the layout of the notes on the fretboard, you can better navigate through different chord shapes and scales, which will allow you to play a wider range of music. Additionally, learning the notes on the fretboard can help you understand music theory concepts such as intervals and chord construction, which can help you write your own music and improvise solos. Furthermore, being able to identify the notes on the fretboard can make it easier to communicate with other musicians and follow written music. Overall, learning the notes on the fretboard is an important step in becoming a well-rounded and proficient guitar player.</p>
             
         </div>
     )

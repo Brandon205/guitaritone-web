@@ -136,11 +136,20 @@ export default function PitchDetection() {
             </form>
 
             <h3 className='text-white text-5xl'>How to use:</h3>
-            <ul className='p-2 text-white'>
+            <ol className='p-2 text-white'>
                 <li className='mb-5 text-xl'>1. Hit the "Play Note" button to hear a note.</li>
-                <li className='mb-5 text-xl'>2. From there try your best, either by humming the note or by trying to play it on your guitar.</li>
+                <li className='mb-5 text-xl'>2. From there try your best to guess the note, either by humming it or by trying to play it on your guitar.</li>
                 <li className='mb-5 text-xl'>3. Once you think you have it go ahead and take a guess.</li>
+            </ol>
+
+            <h1 className='text-white text-4xl text-center'>Why should I practice pitch detection?</h1>
+            <ul className='p-2 text-white w-3/4 my-0 mx-auto tracking-wide leading-8 text xl list-disc'>
+                <li className='mb-5 text-xl'>Improved musical performance: Being able to accurately detect pitch can help you play music in tune, which is important for both solo and ensemble playing. It can also help you improve your sense of timing and rhythm, as these skills are closely related to pitch detection.</li>
+                <li className='mb-5 text-xl'>Improved musical composition: Having a good ear for pitch can help you write melodies and chord progressions that sound harmonically pleasing. It can also help you transcribe music you hear and create your own arrangements.</li>
+                <li className='mb-5 text-xl'>Improved musical appreciation: Being able to detect pitch can enhance your overall musical listening experience by allowing you to better understand the structure and form of the music you are listening to.</li>
+                <li className='mb-5 text-xl'>Improved communication with other musicians: Being able to accurately detect pitch can help you communicate with other musicians about music you are working on together, such as by singing a melody or playing a chord progression for them. It can also make it easier to follow written music.</li>
             </ul>
+            <p className='text-white w-3/4 my-0 mx-auto tracking-wide leading-8 text-xl text-center'>Overall, developing pitch detection skills can be beneficial for anyone who is interested in music, whether as a performer, composer, listener, or all of the above.</p>
         </div>
     )
 }

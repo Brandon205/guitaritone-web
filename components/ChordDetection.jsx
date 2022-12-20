@@ -79,11 +79,11 @@ export default function GuitarChord() {
             </div>
 
             <h1 className='text-white text-4xl'>How to use:</h1>
-            <ul className='p-2 text-white'>
+            <ol className='p-2 text-white'>
                 <li className='mb-3'>1. Hit the "Play Chord" button to hear a chord.</li>
-                <li className='mb-3'>2. From there try your best, either by humming the chord or by trying to play it on your guitar.</li>
-                <li className='mb-3'>3. Once you think you have it go ahead and take a guess.</li>
-            </ul>
+                <li className='mb-3'>2. From there try your best to guess the chord, either by humming the chord or by trying to play it on your guitar.</li>
+                <li className='mb-3'>3. Once you think you have it go ahead and take a guess, if you're correct the app will add one to both your score and streak counters.</li>
+            </ol>
         </div>
     )
 }
